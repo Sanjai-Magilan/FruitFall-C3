@@ -1,0 +1,86 @@
+{
+	"name": "Event sheet 1",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 879720087394917,
+					"parameters": {
+						"interval-seconds": "1.0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 782878488763379,
+					"parameters": {
+						"object-to-create": "Sprite3",
+						"layer": "1",
+						"x": "random(50, 1430)",
+						"y": "-50",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "set-animation-frame",
+					"objectClass": "Sprite3",
+					"sid": 122583911899007,
+					"parameters": {
+						"frame-number": "floor(random(0, 16))"
+					}
+				}
+			],
+			"sid": 613268485757557
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "Sprite3",
+					"sid": 494945852257834,
+					"parameters": {
+						"object": "Sprite4"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "Sprite3",
+					"sid": 788899344050352
+				}
+			],
+			"sid": 705582505135608
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 476863611274434
+				}
+			],
+			"actions": [
+				{
+					"id": "set-position",
+					"objectClass": "Sprite4",
+					"sid": 304230662883725,
+					"parameters": {
+						"x": "Sprite2.x",
+						"y": "Sprite2.y"
+					}
+				}
+			],
+			"sid": 417042921490396
+		}
+	],
+	"sid": 671079649016770
+}
