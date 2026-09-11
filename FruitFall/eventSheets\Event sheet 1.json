@@ -1,0 +1,301 @@
+{
+	"name": "Event sheet 1",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "Missed",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 235315871735861
+		},
+		{
+			"eventType": "variable",
+			"name": "IsDragging",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 378955972272410
+		},
+		{
+			"eventType": "variable",
+			"name": "Score",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 429539798060739
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 879720087394917,
+					"parameters": {
+						"interval-seconds": "1.0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 782878488763379,
+					"parameters": {
+						"object-to-create": "Sprite3",
+						"layer": "1",
+						"x": "random(50, 1430)",
+						"y": "-50",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "set-animation-frame",
+					"objectClass": "Sprite3",
+					"sid": 122583911899007,
+					"parameters": {
+						"frame-number": "floor(random(0, 16))"
+					}
+				}
+			],
+			"sid": 613268485757557
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "Sprite3",
+					"sid": 494945852257834,
+					"parameters": {
+						"object": "Sprite4"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "Sprite3",
+					"sid": 788899344050352
+				},
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 585739321365360,
+					"parameters": {
+						"variable": "Score",
+						"value": "1"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "Score",
+					"sid": 183248525566140,
+					"parameters": {
+						"text": "\"Score: \" & Score"
+					}
+				}
+			],
+			"sid": 705582505135608
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 476863611274434
+				}
+			],
+			"actions": [
+				{
+					"id": "set-position",
+					"objectClass": "Sprite4",
+					"sid": 304230662883725,
+					"parameters": {
+						"x": "Sprite2.x",
+						"y": "Sprite2.y"
+					}
+				},
+				{
+					"id": "set-x",
+					"objectClass": "Sprite2",
+					"sid": 842990094581954,
+					"parameters": {
+						"x": "clamp(Sprite2.X, Sprite2.Width / 2, 1480 - Sprite2.Width / 2)"
+					}
+				}
+			],
+			"sid": 417042921490396
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-y",
+					"objectClass": "Sprite3",
+					"sid": 827951055286295,
+					"parameters": {
+						"comparison": 4,
+						"y-co-ordinate": "860"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 917648507637018,
+					"parameters": {
+						"variable": "Missed",
+						"value": "1"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "Missed",
+					"sid": 817290552983545,
+					"parameters": {
+						"text": "\"Missed : \" & Missed & \" / 5\""
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "Sprite3",
+					"sid": 447211385655682
+				}
+			],
+			"sid": 294951646426357
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-eventvar",
+					"objectClass": "System",
+					"sid": 749341688733225,
+					"parameters": {
+						"variable": "Missed",
+						"comparison": 5,
+						"value": "5"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 347040839249071,
+					"parameters": {
+						"variable": "Score",
+						"value": "0"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 247152428827424,
+					"parameters": {
+						"variable": "Missed",
+						"value": "0"
+					}
+				},
+				{
+					"id": "set-time-scale",
+					"objectClass": "System",
+					"sid": 637170909218171,
+					"parameters": {
+						"time-scale": "1.0"
+					}
+				},
+				{
+					"id": "restart-layout",
+					"objectClass": "System",
+					"sid": 667589504935767
+				}
+			],
+			"sid": 875469491835191
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-touched-object",
+					"objectClass": "Touch",
+					"sid": 884843092704682,
+					"parameters": {
+						"object": "Sprite2",
+						"type": "start"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 275526797640626,
+					"parameters": {
+						"variable": "IsDragging",
+						"value": "true"
+					}
+				}
+			],
+			"sid": 788153560913637
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 365977746149771,
+					"parameters": {
+						"variable": "IsDragging"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-x",
+					"objectClass": "Sprite2",
+					"sid": 135881412211409,
+					"parameters": {
+						"x": "Touch.X"
+					}
+				}
+			],
+			"sid": 671895755256834
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-any-touch-end",
+					"objectClass": "Touch",
+					"sid": 643969595993793
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 949993840233538,
+					"parameters": {
+						"variable": "IsDragging",
+						"value": "false"
+					}
+				}
+			],
+			"sid": 591214365942148
+		}
+	],
+	"sid": 671079649016770
+}
